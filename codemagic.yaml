@@ -14,7 +14,13 @@ workflows:
       - name: Build Android APK
         script: |
           echo "Starting Flet compilation..."
-          flet build apk --clear-cache --yes
+          flet build apk \
+            --project "MindCode" \
+            --icon icon.png \
+            --clear-cache \
+            --web-renderer canvaskit \
+            --android-permissions INTERNET,POST_NOTIFICATIONS \
+            --yes
     artifacts:
       - build/apk/*.apk
     publishing:
