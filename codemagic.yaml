@@ -14,7 +14,7 @@ workflows:
       - name: Build Android APK
         script: |
           echo "Starting Flet compilation..."
-          flet build apk --clean --yes
+          flet build apk --clear-cache --yes
     artifacts:
       - build/apk/*.apk
     publishing:
