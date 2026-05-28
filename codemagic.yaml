@@ -6,8 +6,6 @@ workflows:
     environment:
       groups:
         - flag_config
-      vars:
-        FLET_VERSION: "0.21.2"
     scripts:
       - name: Set up Python and Flet SDK
         script: |
@@ -16,13 +14,13 @@ workflows:
       - name: Build Android APK
         script: |
           echo "Starting Flet compilation..."
-          flet build apk --yes
+          flet build apk --clean --yes
     artifacts:
       - build/apk/*.apk
     publishing:
       email:
         recipients:
-          - weeloks13@gmail.com 
+          - weeloks13@gmail.com
         notify:
           success: true
           failure: true
