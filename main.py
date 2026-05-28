@@ -1,17 +1,23 @@
 import flet as ft
+import sys
 
 def main(page: ft.Page):
     page.title = "MindCode Academy"
     page.theme_mode = ft.ThemeMode.DARK
     
-    # Фиксированные размеры для имитации мобильного экрана на ПК
-    page.window_width = 450
-    page.window_height = 850
+    # Задаем размеры окна ТОЛЬКО если запускаем на ПК (Windows/macOS/Linux)
+    # На Android это вызвало бы черный экран, поэтому здесь стоит проверка.
+    if not sys.platform in ["android", "ios"]:
+        page.window_width = 450
+        page.window_height = 850
     
     # Исходное состояние
     user_xp = 150
     max_xp = 500
     current_primary = ft.colors.BLUE_ACCENT
+    
+    # Базовая инициализация темы для корректного обновления на мобильных
+    page.theme = ft.Theme(color_scheme=ft.ColorScheme(primary=current_primary))
     
     # Функция динамической смены темы
     def update_theme(color):
@@ -145,7 +151,7 @@ def main(page: ft.Page):
                 
                 ft.Divider(height=5, color=ft.colors.TRANSPARENT),
                 
-                # Обновленный футер по вашему запросу
+                # Обновленный футер
                 ft.Container(
                     content=ft.Column([
                         ft.TextButton(
