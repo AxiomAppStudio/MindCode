@@ -7,7 +7,7 @@ workflows:
       groups:
         - flag_config
       vars:
-        FLET_VERSION: "0.21.2" # Или оставь пустой для актуальной
+        FLET_VERSION: "0.21.2"
     scripts:
       - name: Set up Python and Flet SDK
         script: |
@@ -16,14 +16,13 @@ workflows:
       - name: Build Android APK
         script: |
           echo "Starting Flet compilation..."
-          # Собираем APK. По умолчанию Flet ищет main.py или app.py в текущей директории
-          flet build apk
+          flet build apk --yes
     artifacts:
       - build/apk/*.apk
     publishing:
       email:
         recipients:
-          - weeloks13@gmail.com
+          - weeloks13@gmail.com 
         notify:
           success: true
           failure: true
